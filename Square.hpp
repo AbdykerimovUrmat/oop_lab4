@@ -2,22 +2,21 @@
 #define SQUARE_HPP
 
 #include <bits/stdc++.h>
-#include "Vec2.hpp"
 
 
 using namespace std;
 template<class T>
 struct Square {
-	Vec2<T> corner; // Левый нижний угол
-  vector<Vec2<T>> pts;// все точки
+	pair<T,T> corner; // Левый нижний угол
+  vector<pair<T,T>> pts;// все точки
   T a; // Длина стороны квадрата
 
   //конструктор
-  Square(const Vec2<T>&_c, const T _a): corner(_c), a(_a) {
+  Square(const pair<T,T>&_c, const T _a): corner(_c), a(_a) {
     pts.push_back(corner);
-    pts.push_back(Vec2<T>(_c.x + a, _c.y));
-    pts.push_back(Vec2<T>(_c.x, _c.y + a));
-    pts.push_back(Vec2<T>(_c.x + a, _c.y + a));
+    pts.push_back(pair<T,T>(_c.first + a, _c.second));
+    pts.push_back(pair<T,T>(_c.first, _c.second + a));
+    pts.push_back(pair<T,T>(_c.first + a, _c.second + a));
   }
 };
 

@@ -9,15 +9,16 @@ using namespace std;
 
 Абдыкеримов Урмат Эмирбекович
 Вариант 26  (квадрат прямоугольник трапеция) 
-
+Разработать шаблоны классов согласно варианту задания.  Параметром шаблона должен являться скалярный тип данных 
+задающий тип данных для оси координат. Классы должны иметь только публичные поля. В классах не должно быть методов,
+только поля. Фигуры являются фигурами вращения (равнобедренными), за исключением трапеции и прямоугольника. Для 
+хранения координат фигур необходимо использовать шаблон  std::pair.
 Необходимо реализовать две шаблонных функции:
-
-Функция print печати фигур на экран std::cout  (печататься должны координаты вершин фигур). Функция должна принимать на вход std::tuple с фигурами, согласно варианту задания (минимум по одной каждого класса).
-Функция square вычисления суммарной площади фигур. Функция должна принимать на вход std::tuple с фигурами, согласно варианту задания (минимум по одной каждого класса).
- 
-
+Функция print печати фигур на экран std::cout  (печататься должны координаты вершин фигур). Функция должна принимать 
+на вход std::tuple с фигурами, согласно варианту задания (минимум по одной каждого класса).
+Функция square вычисления суммарной площади фигур. Функция должна принимать на вход std::tuple с фигурами, согласно 
+варианту задания (минимум по одной каждого класса).
 Создать программу, которая позволяет:
-
 Создает набор фигур согласно варианту задания (как минимум по одной фигуре каждого типа с координатами типа int и координатоми типа double).
 Сохраняет фигуры в std::tuple
 Печатает на экран содержимое std::tuple с помощью шаблонной функции print.
@@ -25,6 +26,11 @@ using namespace std;
 
 
 */
+template<class T, class Y>
+ostream& operator<<(ostream& os, const pair<T, Y>& pr) {
+	os << "{" << pr.first << ", " << pr.second << "}";
+	return os;
+}
 
 // Вывод tuple с помощью variadic template
 template <size_t I = 0, typename... Ts> 
@@ -75,7 +81,7 @@ int main() {
 		cout << "Enter them again:" << endl;
 		cin >> a >> b >> c >> d;
 	}
-  Trapezoid<int> trap1(Vec2<int> (x, y), a, b, c, d);
+  Trapezoid<int> trap1(pair<int, int> (x, y), a, b, c, d);
 	//
 	//square
   cout << "Enter left-bottom corner of square" << endl;
@@ -88,7 +94,7 @@ int main() {
 		cin >> a;
 	}
 
-  Square<int> sq1(Vec2<int> (x, y), a);
+  Square<int> sq1(pair<int, int> (x, y), a);
 	//
 	//Rectangle
   cout << "Enter left-bottom corner of Rectangle" << endl;
@@ -101,13 +107,13 @@ int main() {
 		cin >> a >> b;
 	}
 
-  Rectangle<int> rect1(Vec2<int> (x, y), a, b); 
+  Rectangle<int> rect1(pair<int, int> (x, y), a, b); 
   //
 
   //
-  Trapezoid<double> trap2(Vec2<double> (5.5, 5.5), 3.6, 5.8, 2.9, 6.7);
-  Square<double> sq2(Vec2<double> (-4.8, -6.5), 10.2);
-  Rectangle<double> rect2(Vec2<double> (-20.6, 16.5), 0.2, 0.7);
+  Trapezoid<double> trap2(pair<double, double> (5.5, 5.5), 3.6, 5.8, 2.9, 6.7);
+  Square<double> sq2(pair<double, double> (-4.8, -6.5), 10.2);
+  Rectangle<double> rect2(pair<double, double> (-20.6, 16.5), 0.2, 0.7);
   //
 	
   //tuple
